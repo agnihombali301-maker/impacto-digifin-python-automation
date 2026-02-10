@@ -27,6 +27,7 @@ Impacto Digifin Python Automation Project/
 ├── logs/                      # Log output (e.g. automation.log)
 ├── .github/workflows/
 │   └── ci.yml          # GitHub Actions CI workflow
+├── Dockerfile          # Docker image for containerized test execution
 ├── requirements.txt
 └── README.md
 ```
@@ -88,6 +89,32 @@ pytest tests/ -v -s
 pytest tests/test_api_users.py::TestAPIUsers::test_get_all_users -v
 ```
 
+## Run Tests with Docker
+
+You can build and run all tests inside a Docker container so you don't need to install Python or dependencies locally.
+
+**Note:** Run these commands in your terminal (PowerShell on Windows, Terminal on Mac/Linux).
+
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running (Windows/Mac), or Docker Engine (Linux)
+- On Windows: ensure Docker Desktop is started before running `docker` commands
+
+### Build the Docker Image
+From the project root directory:
+```bash
+docker build -t impacto-automation .
+```
+
+- `-t impacto-automation` tags the image with the name `impacto-automation`
+- `.` uses the current directory (where the Dockerfile is)
+
+### Run Tests in the Container
+```bash
+docker run impacto-automation
+```
+
+This starts a container from the `impacto-automation` image and runs `pytest tests/ -v` inside it. You should see all 5 tests run and pass (e.g. `5 passed in ~2s`).
+
 ## Design Decisions
 
 - **API choice:** Tests use jsonplaceholder.typicode.com. The assignment initially referenced reqres.in; I switched because reqres.in was returning 403 (Cloudflare blocking automated requests). jsonplaceholder is a public test API that accepts the same style of requests and returns predictable responses.
@@ -103,5 +130,7 @@ pytest tests/test_api_users.py::TestAPIUsers::test_get_all_users -v
 - **Data-driven tests:** User creation is driven by `data/users_to_create.json`. The same test logic runs for each user in the file, satisfying the requirement for at least one data-driven test.
 
 - **CI/CD:** GitHub Actions (`.github/workflows/ci.yml`) runs on push and pull_request to `main`/`master`: checkout, set up Python 3.11, install from `requirements.txt`, and run `pytest tests/ -v`.
+
+- **Docker:** A `Dockerfile` is provided for containerized test execution. It uses `python:3.11-slim`, copies `requirements.txt` and project files, installs dependencies, and runs `pytest tests/ -v` by default. This allows reviewers or CI to run tests without installing Python locally.
 
 - **Custom exception:** `APIError` carries message, status_code, and response so tests can assert on error details (e.g. 404 for non-existent user).
