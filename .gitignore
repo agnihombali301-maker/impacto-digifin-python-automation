@@ -1,0 +1,63 @@
+
+#These are generated automatically and don't need to be in version control.
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+#Generated during builds; not needed in the repo.
+
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+#Large, environment-specific, and can be recreated from requirements.txt.
+
+venv/
+env/
+ENV/
+.venv
+
+#Personal IDE settings that differ per developer.
+
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+#Logs are generated at runtime and can be large.
+
+logs/
+*.log
+
+#May contain sensitive data like API keys.
+
+.env
+.env.local
+
+#OS-specific files that aren't needed in the repo.
+
+.DS_Store
+Thumbs.db
+
+#Generated during test runs.
+
+.coverage
+htmlcov/
+.pytest_cache/
