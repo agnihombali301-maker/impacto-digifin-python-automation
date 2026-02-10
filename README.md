@@ -33,6 +33,10 @@ Impacto Digifin Python Automation Project/
 
 ## Setup Instructions
 
+**Note:** All commands below should be run in your terminal:
+- **Windows:** PowerShell or Command Prompt
+- **Mac/Linux:** Terminal
+
 ### Prerequisites
 - Python 3.11 or higher
 - pip (Python package installer)
@@ -60,6 +64,8 @@ Impacto Digifin Python Automation Project/
    ```
 
 ## How to Run Tests
+
+**Note:** Run these commands in your terminal (PowerShell on Windows, Terminal on Mac/Linux).
 
 ### Run All Tests
 ```bash
