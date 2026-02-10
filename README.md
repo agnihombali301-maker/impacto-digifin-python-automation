@@ -41,7 +41,7 @@ Impacto Digifin Python Automation Project/
 
 1. Clone this repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/agnihombali301-maker/impacto-digifin-python-automation.git
    cd "Impacto Digifin Python Automation Project"
    ```
 
